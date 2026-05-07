@@ -328,26 +328,61 @@
     </div>
 
     <!-- OV: MUSIC -->
-    <div class="overlay" id="ov-music">
-        <div class="ov-box">
-            <button class="ov-x" onclick="closeOv('ov-music')">✕</button>
-            <span class="ov-icon">🎵</span>
-            <div class="ov-title">Your Birthday Vibe</div>
-            <div class="disc">🎧</div>
-            <div class="bars">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            </div>
-            <div class="lyrics">
-                <strong>🎶 Dedicated to Gundu — on her day</strong>
-                Today the whole world should stop and celebrate you,<br>
-                because someone as rare as you only comes once in a lifetime.<br>
-                You are the song, the melody, and the memory — all at once. 🌸<br><br>
-                <em>Happy Birthday, my Harika. Turn it up! 🎉</em>
-            </div>
-            <p style="font-size:11px;color:rgba(253,164,175,0.35);margin-top:14px;font-style:italic;">💡 Play her favourite song while she reads this!</p>
+   <div class="overlay" id="ov-music">
+    <div class="ov-box">
+        <button class="ov-x" onclick="closeOv('ov-music'); stopVibeAudio()">✕</button>
+        <span class="ov-icon">🎵</span>
+        <div class="ov-title">Your Birthday Vibe</div>
+        <div class="disc">🎧</div>
+        <div class="bars" id="vibe-bars">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+
+        <!-- Play Button -->
+        <button id="vibe-play-btn" onclick="toggleVibeAudio()" style="
+            background: linear-gradient(135deg, #9d174d, #f43f5e);
+            color: #fff; border: none; padding: 14px 36px;
+            border-radius: 100px; font-family: 'DM Sans', sans-serif;
+            font-size: 15px; font-weight: 700; cursor: pointer;
+            margin: 14px 0; transition: all 0.2s;
+            box-shadow: 0 0 30px rgba(244,63,94,0.3);">
+            ▶ Play Song
+        </button>
+
+        <!-- Audio element — put your file in images/ folder -->
+        <audio id="vibe-audio" src="images/puttinaroju_jejelu_hd.mp3" preload="auto"></audio>
+
+        <div class="lyrics">
+            <strong>🎶 Dedicated to Gundu — on her day</strong>
+            Today the whole world should stop and celebrate you,<br>
+            because someone as rare as you only comes once in a lifetime.<br>
+            You are the song, the melody, and the memory — all at once. 🌸<br><br>
+            <em>Happy Birthday, my Harika. Turn it up! 🎉</em>
         </div>
     </div>
+</div>
+<script>
+    function toggleVibeAudio() {
+    const audio = document.getElementById('vibe-audio');
+    const btn = document.getElementById('vibe-play-btn');
+    if (audio.paused) {
+        audio.play();
+        btn.textContent = '⏸ Pause';
+    } else {
+        audio.pause();
+        btn.textContent = '▶ Play Song';
+    }
+    audio.onended = () => { btn.textContent = '▶ Play Song'; };
+}
+
+function stopVibeAudio() {
+    const audio = document.getElementById('vibe-audio');
+    const btn = document.getElementById('vibe-play-btn');
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (btn) btn.textContent = '▶ Play Song';
+}
+</script>
 
     <!-- OV: POEM -->
     <div class="overlay" id="ov-poem">
@@ -739,7 +774,16 @@
 
         /* ── OVERLAYS ── */
         function openOv(id) { document.getElementById(id).classList.add('open'); }
-        function closeOv(id) { document.getElementById(id).classList.remove('open'); }
+       function closeOv(id) {
+    document.getElementById(id).classList.remove('open');
+    // Stop vibe audio
+    const vibeAudio = document.getElementById('vibe-audio');
+    const vibeBtn = document.getElementById('vibe-play-btn');
+    if (vibeAudio) { vibeAudio.pause(); vibeAudio.currentTime = 0; }
+    if (vibeBtn) vibeBtn.textContent = '▶ Play Song';
+    // Stop dedicated songs
+    stopAllSongs();
+}
         document.querySelectorAll('.overlay').forEach(ov => {
             ov.addEventListener('click', function (e) { if (e.target === this) { closeOv(this.id); if (this.id === 'ov-songs') stopAllSongs(); } });
         });

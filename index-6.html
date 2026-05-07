@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy Birthday Harika 💕</title>
+    <title>Happy Birthday Harika (Gunduu) 💕</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;700&display=swap"
         rel="stylesheet">
@@ -148,8 +148,8 @@
         .ph-lbl { font-size: 8px; color: rgba(253,164,175,0.25); letter-spacing: 2px; text-transform: uppercase; }
 
         /* ── VIDEO SECTION ── */
-        .video-wrap { border-radius: 20px; overflow: hidden; background: #000; border: 1.5px solid rgba(253,164,175,0.2); position: relative; width: 100%; max-height: 260px; }
-        .video-wrap video { width: 100%; height: 260px; display: block; border-radius: 18px; object-fit: cover; object-position: center top; }
+        .video-wrap { border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.3); border: 1.5px solid rgba(253,164,175,0.2); position: relative; width: 100%; max-height: 320px; display: flex; align-items: center; justify-content: center; }
+        .video-wrap video { width: 100%; height: 100%; max-height: 320px; display: block; border-radius: 18px; object-fit: contain; background: #000; }
         .video-caption { text-align: center; margin-top: 14px; font-size: 13px; color: rgba(253,164,175,0.65); font-style: italic; line-height: 1.8; }
 
         /* ── LIGHTBOX ── */
@@ -293,58 +293,10 @@
             .ov-box { padding: 30px 20px; }
             .photo-grid { grid-template-columns: repeat(3,1fr); gap: 5px; }
         }
-
-        /* ── TORCH REVEAL SCREEN ── */
-        #torchScreen {
-            position: fixed; inset: 0; z-index: 99999;
-            background: #000;
-            cursor: none;
-            transition: opacity 1.4s ease;
-        }
-        #torchScreen.fade-out { opacity: 0; pointer-events: none; }
-        #torchScreen.hidden { display: none; }
-
-        /* The dark overlay with a "hole" cut out where torch is */
-        #torchMask {
-            position: absolute; inset: 0;
-            background: #000;
-            /* The radial gradient hole is set via JS */
-        }
-
-        .torch-hint {
-            position: absolute;
-            bottom: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 2;
-            animation: hintBreath 2.2s ease-in-out infinite;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-        @keyframes hintBreath { 0%,100% { opacity:0.3; } 50% { opacity:0.9; } }
-        .torch-icon { font-size: 36px; display: block; margin-bottom: 10px; }
-        .torch-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: rgba(253,164,175,0.75); }
-        .torch-sub { font-size: 10px; color: rgba(253,164,175,0.3); letter-spacing: 4px; text-transform: uppercase; margin-top: 8px; }
-
-        #revealFlash { position: fixed; inset: 0; z-index: 99998; background: #fff8f0; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-        #revealFlash.flash { opacity: 0.7; }
     </style>
 </head>
 
 <body>
-
-    <!-- ✨ TORCH SPOTLIGHT REVEAL SCREEN -->
-    <div id="revealFlash"></div>
-    <div id="torchScreen">
-        <div id="torchMask"></div>
-        <div class="torch-hint">
-            <span class="torch-icon">🔦</span>
-            <div class="torch-text">Screen మీద torch వేయండి...</div>
-            <div class="torch-sub">✦ move the light to reveal ✦</div>
-        </div>
-    </div>
-
     <canvas id="starCanvas"></canvas>
     <div class="petals" id="petalsLayer"></div>
 
@@ -466,10 +418,7 @@
                 <div class="song-card">
                     <div class="song-top">
                         <div class="song-num">01</div>
-                        <div class="song-info">
-                            <div class="song-name">Nuvvu Nuvvu</div>
-                            <div class="song-movie">🎬 Tholi Prema</div>
-                        </div>
+                       
                     </div>
                     <div class="song-why">"This song feels exactly like the warmth you bring into my life every day. Pure and beautiful, just like you." 🌸</div>
                     <button class="song-play-btn" id="play-btn-0" onclick="toggleSong(0, 'images/song-1.mpeg', this)">
@@ -481,11 +430,7 @@
                 <!-- SONG 2 — Edit name/movie/why and put song2.mp3 in songs/ folder -->
                 <div class="song-card">
                     <div class="song-top">
-                        <div class="song-num">02</div>
-                        <div class="song-info">
-                            <div class="song-name">Chinni Chinni Aasa</div>
-                            <div class="song-movie">🎬 Roja</div>
-                        </div>
+                        
                     </div>
                     <div class="song-why">"Every little dream you have is precious. This song is for all your cute little wishes that deserve to come true." 💕</div>
                     <button class="song-play-btn" id="play-btn-1" onclick="toggleSong(1, 'images/song-2.mpeg', this)">
@@ -494,38 +439,7 @@
                     <div class="audio-progress" id="prog-1"><div class="audio-progress-bar" id="progbar-1"></div></div>
                 </div>
 
-                <!-- SONG 3 — Edit name/movie/why and put song3.mp3 in songs/ folder -->
-                <div class="song-card">
-                    <div class="song-top">
-                        <div class="song-num">03</div>
-                        <div class="song-info">
-                            <div class="song-name">Manasu Palike</div>
-                            <div class="song-movie">🎬 Geetanjali</div>
-                        </div>
-                    </div>
-                    <div class="song-why">"When this plays, I think of you — your voice, your laugh, your kindness. You are the melody, Gundu." ✨</div>
-                    <button class="song-play-btn" id="play-btn-2" onclick="toggleSong(2, 'images/song-3.mpeg', this)">
-                        ▶ Play Song
-                    </button>
-                    <div class="audio-progress" id="prog-2"><div class="audio-progress-bar" id="progbar-2"></div></div>
-                </div>
-
-                <!-- SONG 4 — Edit name/movie/why and put song4.mp3 in songs/ folder -->
-                <div class="song-card">
-                    <div class="song-top">
-                        <div class="song-num">04</div>
-                        <div class="song-info">
-                            <div class="song-name">Ye Maya Chesave</div>
-                            <div class="song-movie">🎬 Ye Maya Chesave</div>
-                        </div>
-                    </div>
-                    <div class="song-why">"You cast a spell on my life and made everything more beautiful. This one's for you, my magical Gundu." 🌙</div>
-                    <button class="song-play-btn" id="play-btn-3" onclick="toggleSong(3, 'images/song-4.mpeg', this)">
-                        ▶ Play Song
-                    </button>
-                    <div class="audio-progress" id="prog-3"><div class="audio-progress-bar" id="progbar-3"></div></div>
-                </div>
-
+                
             </div>
 
             <p style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:18px;font-style:italic;">📁 Your songs are read from the <strong style="color:rgba(16,185,129,0.5)">images/</strong> folder as song-1.mpeg, song-2.mpeg...</p>
@@ -614,8 +528,8 @@
             <div class="s-label">🎥 a little video for you</div>
             <div class="video-wrap">
                 <video controls playsinline preload="metadata" poster="">
-                    <source src="video.mp4" type="video/mp4">
-                    Your browser does not support video.
+                    <source src="images/video.mp4" type="video/mp4">
+                   
                 </video>
             </div>
             <div class="video-caption">
@@ -637,16 +551,76 @@
         </div>
 
         <!-- WISHES -->
-        <div class="card">
-            <div class="s-label">my wishes for you this year</div>
-            <div class="wishes">
-                <div class="wish"><div class="wish-i">🌙</div><div class="wish-t">May every dream you've held close finally find its way to you this year, exactly as you imagined it.</div></div>
-                <div class="wish"><div class="wish-i">💖</div><div class="wish-t">May you be surrounded by people who love you as fiercely and completely as you deserve to be loved.</div></div>
-                <div class="wish"><div class="wish-i">🌸</div><div class="wish-t">May life shower you with beautiful surprises, amazing adventures, and so much laughter that your cheeks hurt.</div></div>
-                <div class="wish"><div class="wish-i">✨</div><div class="wish-t">May you always see yourself the way I see you — breathtaking, extraordinary, and full of golden light.</div></div>
-                <div class="wish"><div class="wish-i">🎂</div><div class="wish-t">And may every birthday from here be bigger, brighter, and more beautiful than the last!</div></div>
+        <!-- WISHES -->
+<div class="card">
+    <div class="s-label">my wishes for you 💖</div>
+
+    <div class="wishes">
+        <div class="wish">
+            <div class="wish-i">🌙</div>
+            <div class="wish-t">
+                May every dream you've held close finally find its way to you this year,
+                exactly as you imagined it.
             </div>
         </div>
+
+        <div class="wish">
+            <div class="wish-i">💼</div>
+            <div class="wish-t">
+                May you get the amazing job you truly deserve and build a beautiful,
+                successful future for yourself.
+            </div>
+        </div>
+
+        <div class="wish">
+            <div class="wish-i">🏡</div>
+            <div class="wish-t">
+                May your life become everything you've always dreamed of, and may you
+                grow into the settled, confident, and happiest version of yourself.
+            </div>
+        </div>
+
+        <div class="wish">
+            <div class="wish-i">🚀</div>
+            <div class="wish-t">
+                May you achieve every single thing your heart desires and accomplish
+                all the ambitions you've worked so hard for.
+            </div>
+        </div>
+
+        <div class="wish">
+            <div class="wish-i">💖</div>
+            <div class="wish-t">
+                May you be surrounded by people who love you as fiercely and completely
+                as you deserve to be loved.
+            </div>
+        </div>
+
+        <div class="wish">
+            <div class="wish-i">🌸</div>
+            <div class="wish-t">
+                May life shower you with beautiful surprises, amazing adventures, and
+                so much laughter that your cheeks hurt.
+            </div>
+        </div>
+
+        <div class="wish">
+            <div class="wish-i">✨</div>
+            <div class="wish-t">
+                May you always see yourself the way I see you — breathtaking,
+                extraordinary, and full of golden light.
+            </div>
+        </div>
+
+        <div class="wish">
+            <div class="wish-i">🎂</div>
+            <div class="wish-t">
+                And may every birthday from here be bigger, brighter, and more
+                beautiful than the last!
+            </div>
+        </div>
+    </div>
+</div>
 
         <!-- CELEBRATE -->
         <div class="cel-area">
@@ -673,7 +647,7 @@
         /* ── PETALS ── */
         (function () {
             const l = document.getElementById('petalsLayer');
-            const e = ['🌸', '🌺', '🌷', '💮', '🪷', '🌹', '🩷'];
+            const e = [ '🌷', '💮', '🪷', '🌹', '🩷'];
             for (let i = 0; i < 28; i++) {
                 const p = document.createElement('div'); p.className = 'petal';
                 p.textContent = e[Math.floor(Math.random() * e.length)];
@@ -864,98 +838,6 @@
                     setTimeout(() => c.remove(), (dur + 0.5) * 1000);
                 }, i * 16);
             }
-        }
-
-        /* ── TORCH SPOTLIGHT REVEAL LOGIC ── */
-        let torchRevealed = false;
-        let revealProgress = 0; // 0 to 100
-        let torchX = window.innerWidth / 2;
-        let torchY = window.innerHeight / 2;
-        let torchRadius = 110;
-        let isMoving = false;
-        let moveTimer = null;
-
-        const torchScreen = document.getElementById('torchScreen');
-        const torchMask = document.getElementById('torchMask');
-
-        function updateTorchLight(x, y, radius) {
-            torchMask.style.background = `
-                radial-gradient(circle ${radius}px at ${x}px ${y}px,
-                    transparent 0%,
-                    transparent ${radius * 0.55}px,
-                    rgba(0,0,0,0.35) ${radius * 0.75}px,
-                    rgba(0,0,0,0.92) ${radius}px,
-                    #000 ${radius * 1.2}px
-                )
-            `;
-        }
-
-        function onTorchMove(x, y) {
-            if (torchRevealed) return;
-            torchX = x; torchY = y;
-
-            // Grow radius as user moves around
-            revealProgress = Math.min(100, revealProgress + 0.8);
-            torchRadius = 110 + (revealProgress / 100) * 160;
-
-            updateTorchLight(x, y, torchRadius);
-
-            // Hide hint after first move
-            const hint = document.querySelector('.torch-hint');
-            if (hint && revealProgress > 5) hint.style.opacity = '0';
-
-            // Auto reveal when enough explored
-            if (revealProgress >= 100) {
-                revealWebsite();
-            }
-
-            // Grow faster if user keeps moving
-            clearTimeout(moveTimer);
-            moveTimer = setTimeout(() => { isMoving = false; }, 300);
-        }
-
-        // Mouse (desktop)
-        torchScreen.addEventListener('mousemove', e => {
-            onTorchMove(e.clientX, e.clientY);
-        });
-
-        // Touch (mobile — finger drag = torch movement)
-        torchScreen.addEventListener('touchmove', e => {
-            e.preventDefault();
-            const t = e.touches[0];
-            onTorchMove(t.clientX, t.clientY);
-        }, { passive: false });
-
-        // Tap/click to also nudge reveal
-        torchScreen.addEventListener('click', e => {
-            onTorchMove(e.clientX, e.clientY);
-            revealProgress = Math.min(100, revealProgress + 18);
-            if (revealProgress >= 100) revealWebsite();
-        });
-
-        // Initial dim torch in center
-        updateTorchLight(torchX, torchY, torchRadius);
-
-        function revealWebsite() {
-            if (torchRevealed) return;
-            torchRevealed = true;
-
-            // Expand light to full screen
-            let r = torchRadius;
-            const expand = setInterval(() => {
-                r += 60;
-                updateTorchLight(torchX, torchY, r);
-                if (r > Math.max(window.innerWidth, window.innerHeight) * 1.5) {
-                    clearInterval(expand);
-                    // Flash and fade out
-                    const flash = document.getElementById('revealFlash');
-                    flash.classList.add('flash');
-                    setTimeout(() => { flash.classList.remove('flash'); }, 350);
-                    torchScreen.classList.add('fade-out');
-                    setTimeout(() => { torchScreen.classList.add('hidden'); }, 1500);
-                    setTimeout(() => { celebrate(); }, 500);
-                }
-            }, 18);
         }
     </script>
 </body>
